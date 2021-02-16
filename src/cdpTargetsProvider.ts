@@ -39,7 +39,9 @@ export default class CDPTargetsProvider implements vscode.TreeDataProvider<CDPTa
 
                 responseArray.forEach((target: IRemoteTargetJson) => {
                     const actualTarget = fixRemoteWebSocket(hostname, port, target);
-                    targets.push(new CDPTarget(actualTarget, "", this.extensionPath));
+                    if (actualTarget.type !== 'service_worker' && actualTarget.type !== 'shared_worker') {
+                        targets.push(new CDPTarget(actualTarget, "", this.extensionPath));
+                    }
                 });
             } else {
                 this.telemetryReporter.sendTelemetryEvent("view/error/no_json_array");
