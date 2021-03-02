@@ -58,6 +58,15 @@
                 "category": "Microsoft Edge Tools"
             },
             {
+                "command": "vscode-edge-devtools-view.changelog",
+                "title": "See Changelog",
+                "category": "Microsoft Edge Tools",
+                "icon": {
+                    "light": "resources/light/other.svg",
+                    "dark": "resources/dark/other.svg"
+                }
+            },
+            {
                 "command": "vscode-edge-devtools-view.launch",
                 "category": "Microsoft Edge Tools",
                 "title": "Open a new tab",
@@ -435,6 +444,11 @@
                 },
                 {
                     "command": "vscode-edge-devtools-view.refresh",
+                    "when": "view == vscode-edge-devtools-view.targets",
+                    "group": "navigation"
+                },
+                {
+                    "command": "vscode-edge-devtools-view.changelog",
                     "when": "view == vscode-edge-devtools-view.targets",
                     "group": "navigation"
                 }
