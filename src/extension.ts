@@ -65,6 +65,7 @@ export function activate(context: vscode.ExtensionContext) {
     context.subscriptions.push(vscode.commands.registerCommand(
         `${SETTINGS_VIEW_NAME}.refresh`,
         () => cdpTargetsProvider.refresh()));
+    vscode.commands.executeCommand('setContext', 'titleCommandsRegistered', true);
     context.subscriptions.push(vscode.commands.registerCommand(
         `${SETTINGS_VIEW_NAME}.attach`,
         (target: CDPTarget) => {
@@ -98,7 +99,6 @@ export function activate(context: vscode.ExtensionContext) {
     context.subscriptions.push(vscode.commands.registerCommand(
         `${SETTINGS_VIEW_NAME}.copyItem`,
         (target: CDPTarget) => vscode.env.clipboard.writeText(target.tooltip)));
-    vscode.commands.executeCommand('setContext', 'commandsRegistered', true);
 }
 
 export async function attach(
