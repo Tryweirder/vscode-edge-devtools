@@ -98,6 +98,7 @@ export function activate(context: vscode.ExtensionContext) {
     context.subscriptions.push(vscode.commands.registerCommand(
         `${SETTINGS_VIEW_NAME}.copyItem`,
         (target: CDPTarget) => vscode.env.clipboard.writeText(target.tooltip)));
+    vscode.commands.executeCommand('setContext', 'commandsRegistered', true);
 }
 
 export async function attach(
@@ -160,7 +161,7 @@ export async function attach(
                 DevToolsPanel.createOrShow(context, telemetryReporter, targetWebsocketUrl, runtimeConfig);
             } else if (useRetry) {
                 // Wait for a little bit until we retry
-                await new Promise((resolve, reject) => {
+                await new Promise<void>((resolve, reject) => {
                     setTimeout(() => {
                         resolve();
                     }, SETTINGS_DEFAULT_ATTACH_INTERVAL);
